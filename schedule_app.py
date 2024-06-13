@@ -41,14 +41,14 @@ def create_schedule(employee_list, interview_slots):
 
 
 # Streamlit 인터페이스
-st.title("면담 일정 계획 도구")
+st.title("면담 일정 계획")
 
 st.sidebar.header("입력 데이터")
 employee_names = st.sidebar.text_area("직원 이름 입력 (한 줄에 한 명씩)", value="")
 
 # 면담 가능한 시작 시간과 끝 시간 입력
-start_time = st.sidebar.time_input("면담 가능한 시작 시간", datetime.strptime("13:00", "%H:%M").time())
-end_time = st.sidebar.time_input("면담 가능한 끝 시간", datetime.strptime("01:00", "%H:%M").time())
+start_time = st.sidebar.time_input("면담 가능한 시작 시간", datetime.strptime("16:00", "%H:%M").time())
+end_time = st.sidebar.time_input("면담 가능한 끝 시간", datetime.strptime("23:00", "%H:%M").time())
 
 interview_duration = st.sidebar.number_input("면담 진행 시간 (분 단위)", min_value=5, max_value=120, value=30)
 break_duration = st.sidebar.number_input("쉬는 시간 (분 단위)", min_value=0, max_value=120, value=10)
@@ -85,7 +85,7 @@ if start_time and end_time:
                 not_interviewed = set(employee_list) - interviewed
                 st.write("면담 진행 인원:")
                 for employee, slot in schedule.items():
-                    st.write(f"{employee}: 시간대 {slot}")
+                    st.write(f"{employee} :  시간대 {slot}")
                 st.write(f"\n총 면담 진행 인원 수: {len(interviewed)}")
                 st.write(f"\n총 면담 미진행 인원 수: {len(not_interviewed)}")
 
