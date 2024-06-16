@@ -30,7 +30,9 @@ def calculate_next_month_shifts(employees):
 st.title("근무 시프트 자동 배정 시스템")
 
 # 직원 데이터 입력 (텍스트 박스로 여러 줄 입력 받기)
-st.write("직원 정보를 복사하여 아래 텍스트 박스에 붙여넣기 하세요. 형식: 사번 이름 시프트 입사일 공정 직급 (각 줄에 하나씩, 공백으로 구분)")
+st.write("직원 정보를 복사하여 아래 텍스트 박스에 붙여넣기 하세요.")
+st.write(" 형식: 사번 이름 시프트 입사일 공정 직급 (각 줄에 하나씩, 공백으로 구분)")
+st.write("예시 : mk7892 안상진 F 2023-10-10 DATA 스탭")
 employee_data_input = st.text_area("직원 데이터 입력", height=200)
 
 # 입력 데이터 처리
