@@ -14,16 +14,6 @@ def next_shift(current_shift):
 # 다음달 시프트 계산 함수
 def calculate_next_month_shifts(employees):
     employees['next_shift'] = employees.apply(lambda row: next_shift(row['current_shift']) if row['current_shift'] != '퇴사' else '퇴사', axis=1)
-
-    # 현재 F 시프트인 사람들을 대상으로 G 시프트 인원과 맞추기
-    for process in employees['process'].unique():
-        f_shift_employees = employees[(employees['current_shift'] == 'F') & (employees['next_shift'] == 'G') & (employees['process'] == process)]
-        g_shift_count = employees[(employees['current_shift'] == 'G') & (employees['process'] == process)].shape[0]
-
-        if f_shift_employees.shape[0] > g_shift_count:
-            excess_f_to_g = f_shift_employees.sample(f_shift_employees.shape[0] - g_shift_count).index
-            employees.loc[excess_f_to_g, 'next_shift'] = 'F'
-
     return employees
 
 # Streamlit 애플리케이션 설정
